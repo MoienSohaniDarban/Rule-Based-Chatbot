@@ -41,10 +41,25 @@ def check_all_messages(message):
     response('I\'m doing fine, and you?', ['how', 'are', 'you', 'doing'], required_words=['how'])
     response('You\'re welcome!', ['thank', 'thanks'], single_response=True)
     response('Thank you!', ['i', 'love', 'code', 'palace'], required_words=['code', 'palace'])
+    response('Good morning! I hope you have a great day.', ['good', 'morning'], required_words=['good', 'morning'])
+    response('Good night! Sleep well.', ['good', 'night'], required_words=['good', 'night'])
+    response("I'm a simple Python chatbot!", ['what', 'is', 'your', 'name'], required_words=['name'])
+    response("I'm a simple chatbot built with Python.", ['who', 'are', 'you'], required_words=['who', 'you'])
+    response('I was created as a Python learning project.', ['who', 'created', 'you'], required_words=['created', 'you'])
+    response('I was made as a Python learning project.', ['who', 'made', 'you'], required_words=['made', 'you'])
+    response("I don't have an age. Bots don't grow old!", ['how', 'old', 'are', 'you', 'age'], required_words=['old'])
+    response('I live inside this Python program.', ['where', 'do', 'you', 'live'], required_words=['where', 'live'])
+    response('Python, of course!', ['favorite', 'programming', 'language'], required_words=['language'])
 
     # Longer responses
     response(lr.R_ADVICE, ['give', 'advice'], required_words=['advice'])
     response(lr.R_EATING, ['what', 'you', 'eat'], required_words=['you', 'eat'])
+    response(lr.R_CAPABILITIES, ['what', 'can', 'you', 'do', 'help'], required_words=['can', 'you'])
+    response(lr.R_PYTHON, ['how', 'learn', 'python', 'start'], required_words=['python'])
+    response(lr.R_PROGRAMMING, ['what', 'is', 'programming', 'coding'], required_words=['programming'])
+    response(lr.R_MOTIVATION, ['motivate', 'motivation', 'stuck', 'quit'], single_response=True)
+    response(lr.R_WEATHER, ['what', 'is', 'the', 'weather', 'today'], required_words=['weather'])
+    response(lr.joke(), ['tell', 'me', 'a', 'joke', 'funny'], required_words=['joke'])
 
     best_match = max(highest_prob_list, key=highest_prob_list.get)
 

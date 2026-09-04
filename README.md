@@ -4,20 +4,21 @@
 
 ### A lightweight rule-based conversational chatbot built with Python
 
-A simple yet extensible chatbot that processes user messages, evaluates predefined response patterns, and selects the most relevant answer using probability-based keyword matching.
+A simple and extensible chatbot that processes user messages, evaluates predefined response patterns, and selects the most relevant answer using probability-based keyword matching.
 
 <br>
 
 [![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Stars](https://img.shields.io/github/stars/MoienSohaniDarban/Chat_Bot?style=for-the-badge&logo=github)](https://github.com/MoienSohaniDarban/Chat_Bot/stargazers)
-[![Forks](https://img.shields.io/github/forks/MoienSohaniDarban/Chat_Bot?style=for-the-badge&logo=github)](https://github.com/MoienSohaniDarban/Chat_Bot/network/members)
+[![Stars](https://img.shields.io/github/stars/MoienSD/Chat_Bot?style=for-the-badge&logo=github)](https://github.com/MoienSD/Chat_Bot/stargazers)
+[![Forks](https://img.shields.io/github/forks/MoienSD/Chat_Bot?style=for-the-badge&logo=github)](https://github.com/MoienSD/Chat_Bot/network/members)
 
 <br>
 
 [Overview](#-overview) •
+[Features](#-features) •
 [How It Works](#-how-it-works) •
 [Getting Started](#-getting-started) •
-[Project Structure](#-project-structure) •
+[Latest Update](#-latest-update) •
 [Roadmap](#-roadmap)
 
 </div>
@@ -28,13 +29,9 @@ A simple yet extensible chatbot that processes user messages, evaluates predefin
 
 **Chat Bot** is a lightweight conversational system implemented entirely in Python.
 
-Unlike modern AI chatbots that depend on large language models or external APIs, this project uses a deterministic, rule-based approach.
+Unlike modern AI chatbots that depend on large language models or external APIs, this project uses a deterministic, rule-based approach. Incoming messages are processed and compared with predefined word patterns. Each possible response receives a matching score, and the chatbot selects the response with the highest probability.
 
-Incoming messages are processed and compared with predefined word patterns. Each possible response receives a matching score, and the chatbot selects the response with the highest probability.
-
-When no suitable response can be found, the system returns a randomized fallback message.
-
-The project demonstrates the fundamental mechanics behind simple conversational systems while remaining easy to understand, modify, and extend.
+When no suitable response can be found, the system returns a randomized fallback message. The project demonstrates the fundamental mechanics behind simple conversational systems while remaining easy to understand, modify, and extend.
 
 ---
 
@@ -43,9 +40,14 @@ The project demonstrates the fundamental mechanics behind simple conversational 
 - 💬 Interactive command-line conversation
 - 🔍 Keyword-based message analysis
 - 📊 Probability-based response selection
-- ✅ Required-word validation
-- 🧠 Multiple predefined conversation patterns
-- 🎲 Random fallback responses
+- ✅ Required-word validation for more accurate matching
+- 👋 Greetings, farewells, and everyday conversation
+- 🤖 Identity, creator, age, location, and capability responses
+- 🐍 Python learning and programming explanations
+- 💡 Advice and motivational responses
+- 😂 Randomly selected programming jokes
+- 🌦️ Weather-related limitation response
+- 🎲 Varied fallback responses for unknown messages
 - 🔡 Case-insensitive input processing
 - 📦 No third-party dependencies
 - 🧩 Easy-to-extend response system
@@ -103,15 +105,11 @@ split_message = re.split(
 )
 ```
 
-This allows the chatbot to evaluate user messages regardless of capitalization or basic punctuation.
+This allows the chatbot to evaluate messages regardless of capitalization or basic punctuation.
 
 ### Probability Calculation
 
-Each possible response has a set of recognized words.
-
-The chatbot checks how many of those words occur in the user's message and calculates a matching percentage.
-
-Conceptually:
+Each possible response has a set of recognized words. The chatbot checks how many of those words occur in the user's message and calculates a matching percentage:
 
 ```text
 Matched Words
@@ -123,9 +121,7 @@ The response with the highest score is considered the best candidate.
 
 ### Required Words
 
-Some responses require specific words to be present before they are considered valid.
-
-For example:
+Some responses require specific words to be present before they are considered valid:
 
 ```python
 response(
@@ -135,17 +131,11 @@ response(
 )
 ```
 
-Even if several words match, the response will only be considered if the required word `how` is present.
+Even if several words match, this response is only considered when the required word `how` is present. More specific responses use multiple required words to reduce incorrect matches.
 
 ### Fallback Handling
 
-If the chatbot cannot confidently associate the user's input with an existing pattern, it uses a random fallback response stored in:
-
-```text
-long_responses.py
-```
-
-This prevents the application from failing or returning an empty response when encountering unfamiliar input.
+If the chatbot cannot associate the user's input with an existing pattern, it returns one of several random fallback messages from `long_responses.py`. This prevents the application from returning an empty response when it encounters unfamiliar input.
 
 ---
 
@@ -155,11 +145,20 @@ This prevents the application from failing or returning an empty response when e
 You: Hello
 Bot: Hello!
 
-You: How are you doing?
-Bot: I'm doing fine, and you?
+You: What is your name?
+Bot: I'm a simple Python chatbot!
 
-You: Give me some advice
-Bot: If I were you, I would go to the internet and type exactly what you wrote there!
+You: Who created you?
+Bot: I was created as a Python learning project.
+
+You: What can you do?
+Bot: I can respond to greetings, answer a few questions, share advice, tell jokes, and chat with you using simple keyword matching.
+
+You: How can I learn Python?
+Bot: Start with Python basics such as variables, conditions, loops, and functions. Then build small projects and improve them as you learn.
+
+You: Tell me a joke
+Bot: Why do programmers prefer dark mode? Because light attracts bugs!
 
 You: Bye
 Bot: See you!
@@ -187,18 +186,19 @@ The project intentionally uses a minimal architecture:
                     │ Response Logic  │
                     └────────┬────────┘
                              │
-                    Unknown Message
+                 Long or Random Response
                              │
                              ▼
                     ┌─────────────────┐
                     │long_responses.py│
                     │                 │
                     │ Long Responses  │
+                    │ Random Jokes    │
                     │ Fallback Logic  │
                     └─────────────────┘
 ```
 
-This separation keeps the main conversational logic independent from longer and fallback responses.
+This separation keeps the main conversational logic independent from longer, randomized, and fallback responses.
 
 ---
 
@@ -208,10 +208,10 @@ This separation keeps the main conversational logic independent from longer and 
 Chat_Bot/
 │
 ├── ChatBot.py
-│   └── Core chatbot logic and conversation loop
+│   └── Input processing, response scoring, intent patterns, and conversation loop
 │
 ├── long_responses.py
-│   └── Long-form and fallback chatbot responses
+│   └── Long-form replies, random jokes, and fallback responses
 │
 └── README.md
     └── Project documentation
@@ -226,7 +226,7 @@ The main application file is responsible for:
 
 - Receiving user input
 - Normalizing and tokenizing messages
-- Registering available responses
+- Registering short and long response patterns
 - Calculating matching probabilities
 - Checking required words
 - Selecting the most appropriate response
@@ -239,9 +239,7 @@ The main application file is responsible for:
 
 <br>
 
-This module separates longer responses from the primary chatbot logic.
-
-It also provides randomized fallback messages when the chatbot cannot recognize a user's input.
+This module contains longer educational and conversational responses. It also provides random programming jokes and varied fallback messages for inputs the chatbot cannot recognize.
 
 </details>
 
@@ -251,55 +249,32 @@ It also provides randomized fallback messages when the chatbot cannot recognize 
 
 ### Prerequisites
 
-The project requires:
-
-```text
-Python 3.x
-```
-
-Check whether Python is installed:
+The project requires Python 3.x. Check whether Python is installed:
 
 ```bash
 python --version
 ```
 
-or:
+On some systems, use:
 
 ```bash
 python3 --version
 ```
 
----
-
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/MoienSohaniDarban/Chat_Bot.git
-```
-
-Navigate into the project:
-
-```bash
+git clone https://github.com/MoienSD/Chat_Bot.git
 cd Chat_Bot
 ```
 
----
-
 ### Dependencies
 
-No external packages are required.
-
-The project currently relies only on Python's standard library:
+No external packages are required. The project relies only on Python's standard library:
 
 ```python
 import re
 import random
-```
-
-Therefore, there is no need to run:
-
-```text
-pip install ...
 ```
 
 ---
@@ -318,21 +293,17 @@ On some systems:
 python3 ChatBot.py
 ```
 
-Once started, the terminal will display:
-
-```console
-You:
-```
-
-Enter a message and press **Enter** to interact with the chatbot.
+Once started, the terminal displays `You:`. Enter a message and press **Enter** to interact with the chatbot. Use `Ctrl+C` to stop the program.
 
 ---
 
 ## 🧩 Extending the Chatbot
 
-One of the main advantages of the project is that additional conversational patterns can be added with minimal code.
+Additional conversational patterns can be added with minimal code.
 
 ### Simple Response
+
+Use `single_response=True` when any recognized keyword should be enough to activate a response:
 
 ```python
 response(
@@ -344,29 +315,48 @@ response(
 
 ### Response With Required Words
 
+Use `required_words` when particular words must be present:
+
 ```python
 response(
-    "I'm doing fine, and you?",
-    ['how', 'are', 'you', 'doing'],
-    required_words=['how']
+    'Good morning! I hope you have a great day.',
+    ['good', 'morning'],
+    required_words=['good', 'morning']
 )
 ```
 
-### Concept
+### Long Response
 
-Each response defines:
+Define longer text in `long_responses.py`:
 
-```text
-Response Text
-     │
-     ├── Recognized Words
-     │
-     ├── Required Words
-     │
-     └── Single-Response Behavior
+```python
+R_NEW_RESPONSE = (
+    "Your longer response can be stored here to keep "
+    "the main chatbot file easy to read."
+)
 ```
 
-This makes it straightforward to expand the chatbot's vocabulary and conversational capabilities.
+Then register it in `ChatBot.py`:
+
+```python
+response(
+    lr.R_NEW_RESPONSE,
+    ['relevant', 'keywords'],
+    required_words=['relevant']
+)
+```
+
+### Random Response
+
+A function can return a randomly selected response:
+
+```python
+def joke():
+    return random.choice([
+        "First joke",
+        "Second joke"
+    ])
+```
 
 ---
 
@@ -376,7 +366,7 @@ This makes it straightforward to expand the chatbot's vocabulary and conversatio
 | :--- | :--- |
 | **Python** | Core application language |
 | **Regular Expressions** | Message parsing and tokenization |
-| **Random Module** | Fallback response selection |
+| **Random Module** | Joke and fallback response selection |
 | **Terminal / CLI** | User interaction |
 
 ---
@@ -385,13 +375,13 @@ This makes it straightforward to expand the chatbot's vocabulary and conversatio
 
 This project demonstrates several foundational programming concepts:
 
-- Text preprocessing
-- String normalization
-- Tokenization
+- Text preprocessing and normalization
+- Tokenization with regular expressions
 - Keyword matching
 - Probability-based scoring
-- Rule validation
+- Required-word validation
 - Modular code organization
+- Random response selection
 - Fallback handling
 - Interactive CLI applications
 
@@ -407,12 +397,25 @@ This project is intentionally a **rule-based chatbot**.
 | :--- | :--- |
 | Predefined responses | Generated responses |
 | Keyword matching | Semantic understanding |
-| Deterministic behavior | Probabilistic generation |
-| No training required | Model training/API required |
+| Deterministic intent selection | Probabilistic generation |
+| No training required | Model training or API access required |
 | Extremely lightweight | Higher computational cost |
 | Fully local | Often depends on external models |
 
-This makes the project particularly useful for learning the core logic of conversational systems without requiring machine-learning infrastructure.
+This makes the project useful for learning the core logic of conversational systems without requiring machine-learning infrastructure.
+
+---
+
+## 🆕 Latest Update
+
+- Added new greetings for morning and night
+- Added identity, creator, age, location, and favorite-language responses
+- Added chatbot capability information
+- Added Python learning and programming explanations
+- Added motivational and weather-related responses
+- Added three randomly selected programming jokes
+- Expanded and improved fallback responses
+- Refined required keywords to reduce incorrect intent matches
 
 ---
 
@@ -434,10 +437,13 @@ Key learning areas include:
 
 Potential improvements for future versions:
 
-- [ ] Expand available conversation patterns
+- [x] Expand available conversation patterns
+- [x] Add varied fallback responses
+- [x] Add randomized programming jokes
+- [ ] Add a built-in exit command
 - [ ] Add conversation context
 - [ ] Add short-term conversational memory
-- [ ] Separate intents from response logic
+- [ ] Separate intents into a JSON data file
 - [ ] Improve tokenization
 - [ ] Add similarity-based matching
 - [ ] Implement NLP-based intent classification
@@ -445,7 +451,7 @@ Potential improvements for future versions:
 - [ ] Create a graphical interface
 - [ ] Add a web-based chat interface
 - [ ] Add REST API support
-- [ ] Explore machine-learning-based response classification
+- [ ] Connect to a live weather API
 - [ ] Integrate an LLM as an optional advanced response engine
 
 ---
@@ -454,28 +460,26 @@ Potential improvements for future versions:
 
 Contributions, suggestions, and improvements are welcome.
 
-If you would like to improve the project:
+1. Fork the repository.
+2. Create a feature branch:
 
-1. Fork the repository
-2. Create a new branch
+   ```bash
+   git checkout -b feature/your-feature
+   ```
 
-```bash
-git checkout -b feature/your-feature
-```
+3. Commit your changes:
 
-3. Commit your changes
+   ```bash
+   git commit -m "Add new feature"
+   ```
 
-```bash
-git commit -m "Add new feature"
-```
+4. Push your branch:
 
-4. Push your branch
+   ```bash
+   git push origin feature/your-feature
+   ```
 
-```bash
-git push origin feature/your-feature
-```
-
-5. Open a Pull Request
+5. Open a pull request.
 
 ---
 
@@ -485,7 +489,7 @@ git push origin feature/your-feature
 
 ### Moien Sohani Darban
 
-[![GitHub](https://img.shields.io/badge/GitHub-MoienSohaniDarban-181717?style=for-the-badge&logo=github)](https://github.com/MoienSohaniDarban)
+[![GitHub](https://img.shields.io/badge/GitHub-MoienSD-181717?style=for-the-badge&logo=github)](https://github.com/MoienSD)
 
 </div>
 
