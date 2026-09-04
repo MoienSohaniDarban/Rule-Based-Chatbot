@@ -489,7 +489,7 @@ Contributions, suggestions, and improvements are welcome.
 
 ### Moien Sohani Darban
 
-[![GitHub](https://img.shields.io/badge/GitHub-MoienSD-181717?style=for-the-badge&logo=github)](https://github.com/MoienSD)
+[![GitHub](https://img.shields.io/badge/GitHub-MoienSohaniDarban-181717?style=for-the-badge&logo=github)](https://github.com/MoienSohaniDarban)
 
 </div>
 
